@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Day1
+﻿namespace Day1
 {
     public class FindDigitsAndDigitNamesPolicy : IDigitFinderPolicy
     {
@@ -29,10 +23,10 @@ namespace Day1
         public int GetLastDigit(string input)
             => GetDigit(input, (0, int.MinValue), (input, key) => input.LastIndexOf(key), (a, b) => a > b, findDigitsOnly.GetLastDigit);
 
-        private int GetDigit(string input, 
-                             (int digit, int index) digitNameAndIndex, 
-                             Func<string, string, int> FindIndex,  
-                             Func<int, int, bool> CompareInts, 
+        private int GetDigit(string input,
+                             (int digit, int index) digitNameAndIndex,
+                             Func<string, string, int> FindIndex,
+                             Func<int, int, bool> CompareInts,
                              Func<string, int> FindDigit)
         {
             foreach (var digitNameAndValue in TextToDigit)

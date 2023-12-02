@@ -2,7 +2,7 @@
 {
     public class FindDigitsAndDigitNamesPolicy : IDigitFinderPolicy
     {
-        private readonly Dictionary<string, int> TextToDigit = new()
+        private readonly Dictionary<string, int> textToDigit = new()
         {
             {"one", 1},
             {"two", 2},
@@ -25,23 +25,23 @@
 
         private int GetDigit(string input,
                              (int digit, int index) digitNameAndIndex,
-                             Func<string, string, int> FindIndex,
-                             Func<int, int, bool> CompareInts,
-                             Func<string, int> FindDigit)
+                             Func<string, string, int> findIndex,
+                             Func<int, int, bool> compareInts,
+                             Func<string, int> findDigit)
         {
-            foreach (var digitNameAndValue in TextToDigit)
+            foreach (var digitNameAndValue in textToDigit)
             {
-                var indexOfDigitName = FindIndex(input, digitNameAndValue.Key);
-                if ((indexOfDigitName != -1) && CompareInts(indexOfDigitName, digitNameAndIndex.index))
+                var indexOfDigitName = findIndex(input, digitNameAndValue.Key);
+                if ((indexOfDigitName != -1) && compareInts(indexOfDigitName, digitNameAndIndex.index))
                 {
                     digitNameAndIndex.digit = digitNameAndValue.Value;
                     digitNameAndIndex.index = indexOfDigitName;
                 }
             }
 
-            var digit = FindDigit(input);
+            var digit = findDigit(input);
 
-            return CompareInts(FindIndex(input, digit.ToString()), digitNameAndIndex.index)
+            return compareInts(findIndex(input, digit.ToString()), digitNameAndIndex.index)
                          ? digit
                          : digitNameAndIndex.digit;
         }

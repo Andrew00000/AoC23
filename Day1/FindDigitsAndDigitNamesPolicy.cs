@@ -21,13 +21,13 @@ namespace Day1
             {"nine", 9}
         };
 
-        private readonly FindDigitsOnlyPolicy FindDigitsOnly = new();
+        private readonly FindDigitsOnlyPolicy findDigitsOnly = new();
 
         public int GetFirstDigit(string input)
-            => GetDigit(input, (10, int.MaxValue), (input, key) => input.IndexOf(key), (a, b) => a < b, FindDigitsOnly.GetFirstDigit);
+            => GetDigit(input, (10, int.MaxValue), (input, key) => input.IndexOf(key), (a, b) => a < b, findDigitsOnly.GetFirstDigit);
 
         public int GetLastDigit(string input)
-            => GetDigit(input, (0, int.MinValue), (input, key) => input.LastIndexOf(key), (a, b) => a > b, input => input.Last(char.IsDigit));
+            => GetDigit(input, (0, int.MinValue), (input, key) => input.LastIndexOf(key), (a, b) => a > b, findDigitsOnly.GetLastDigit);
 
         private int GetDigit(string input, 
                              (int digit, int index) digitNameAndIndex, 

@@ -23,45 +23,34 @@ namespace Day1
 
 
         public int GetFirstDigit(string input)
-        {
-            var firstDigitNameAndIndex = (10, int.MaxValue);
+            => GetDigit(input, (10, int.MaxValue), (input, key) => input.IndexOf(key), (a, b) => a < b, input => input.First(char.IsDigit));
 
-            foreach (var digit in TextToDigit)
-            {
-                var firstIndexOfDigitName = input.IndexOf(digit.Key);
-                if ((firstIndexOfDigitName != -1) && (firstIndexOfDigitName < firstDigitNameAndIndex.Item2))
-                {
-                    firstDigitNameAndIndex.Item1 = digit.Value;
-                    firstDigitNameAndIndex.Item2 = firstIndexOfDigitName;
-                }
-            }
-
-            var firstDigitChar = input.First(char.IsDigit);
-
-            return input.IndexOf(firstDigitChar) < firstDigitNameAndIndex.Item2
-                         ? firstDigitChar - '0'
-                         : firstDigitNameAndIndex.Item1;
-        }
 
         public int GetLastDigit(string input)
+            => GetDigit(input, (0, int.MinValue), (input, key) => input.LastIndexOf(key), (a, b) => a > b, input => input.Last(char.IsDigit));
+
+        private int GetDigit(string input, 
+                             (int digit, int index) digitNameAndIndex, 
+                             Func<string, string, int> FindIndex,  
+                             Func<int, int, bool> CompareInts, 
+                             Func<string, char> FindDigitChar)
         {
-            var lastDigitNameAndIndex = (0, int.MinValue);
 
             foreach (var digit in TextToDigit)
             {
-                var lastIndexOfDigitName = input.LastIndexOf(digit.Key);
-                if ((lastIndexOfDigitName != -1) && (lastIndexOfDigitName > lastDigitNameAndIndex.Item2))
+                var indexOfDigitName = FindIndex(input, digit.Key);
+                if ((indexOfDigitName != -1) && CompareInts(indexOfDigitName, digitNameAndIndex.index))
                 {
-                    lastDigitNameAndIndex.Item1 = digit.Value;
-                    lastDigitNameAndIndex.Item2 = lastIndexOfDigitName;
+                    digitNameAndIndex.Item1 = digit.Value;
+                    digitNameAndIndex.Item2 = indexOfDigitName;
                 }
             }
 
-            var lastDigitChar = input.Last(char.IsDigit);
+            var digitChar = FindDigitChar(input);
 
-            return input.LastIndexOf(lastDigitChar) > lastDigitNameAndIndex.Item2
-                         ? lastDigitChar - '0'
-                         : lastDigitNameAndIndex.Item1;
+            return CompareInts(FindIndex(input, digitChar.ToString()), digitNameAndIndex.index)
+                         ? digitChar - '0'
+                         : digitNameAndIndex.digit;
         }
     }
 }

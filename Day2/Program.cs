@@ -17,7 +17,7 @@ var problemOneResult = solution1 == sum1 ? $"Yes the answer is {sum1}"
 
 Console.WriteLine(problemOneResult);
 
-//Problem Two: https://adventofcode.com/2023/day/2
+//Problem Two: https://adventofcode.com/2023/day/2#part2
 
 var sum2 = games.Sum(x => x.GetMinimumPower());
 

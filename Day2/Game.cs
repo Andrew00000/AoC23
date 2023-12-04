@@ -15,6 +15,6 @@
             => reveals.All(x => !x.IsAnyLargerThan(maxReveal));
 
         public long GetMinimumPower()
-            => reveals[0].GetMinimumRevealNeeded(reveals).GetThePowerOfTheReveal();
+            => reveals.Aggregate((temp, x) => x.GetMinimumRevealNeeded(temp)).GetThePowerOfTheReveal();
     }
 }

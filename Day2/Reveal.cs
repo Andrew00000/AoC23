@@ -15,19 +15,19 @@
             => IsGreenLargerThan(comparedTo) || IsBlueLargerThan(comparedTo) || IsRedLargerThan(comparedTo);
         public long GetThePowerOfTheReveal()
             => 1L * green * blue * red;
-        public Reveal GetMinimumRevealNeeded(Reveal[] pool)
-            => new(FindMinGreenNeeded(pool), FindMinBlueNeeded(pool), FindMinRedNeeded(pool));
+        public Reveal GetMinimumRevealNeeded(Reveal comparedTo)
+            => new(FindMinGreenNeeded(comparedTo), FindMinBlueNeeded(comparedTo), FindMinRedNeeded(comparedTo));
         private bool IsGreenLargerThan(Reveal comparedTo)
             => green > comparedTo.green;
         private bool IsBlueLargerThan(Reveal comparedTo)
             => blue > comparedTo.blue;
         private bool IsRedLargerThan(Reveal comparedTo)
             => red > comparedTo.red;
-        private int FindMinGreenNeeded(Reveal[] pool)
-            => pool.Select(x => x.green).Max();
-        private int FindMinBlueNeeded(Reveal[] pool)
-            => pool.Select(x => x.blue).Max();
-        private int FindMinRedNeeded(Reveal[] pool)
-            => pool.Select(x => x.red).Max();
+        private int FindMinGreenNeeded(Reveal comparedTo)
+            => Math.Max(green, comparedTo.green);
+        private int FindMinBlueNeeded(Reveal comparedTo)
+            => Math.Max(blue, comparedTo.blue);
+        private int FindMinRedNeeded(Reveal comparedTo)
+            => Math.Max(red, comparedTo.red);
     }
 }

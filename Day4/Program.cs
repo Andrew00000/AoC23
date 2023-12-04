@@ -16,10 +16,10 @@ Console.WriteLine(problemOneResult);
 
 //Problem Two: https://adventofcode.com/2023/day/4#part2
 
-var bookie = new Bookie();
+var bookie = new Deck();
 
-var cardsFinal = bookie.GetWinnings(cards.ToArray());
-var sum2 = cardsFinal.Sum();
+var cardsFinal = bookie.ExecuteCards(cards);
+var sum2 = cardsFinal.Sum(x => x.Value);
 
 var problemTwoResult = solution2 == sum2 ? $"Yes the answer is {sum2}"
                                          : $"No the answer isnt {sum2}";

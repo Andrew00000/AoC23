@@ -1,18 +1,17 @@
 ﻿public class Parser
 {
-    public IEnumerable<Card> Parse(string[] input)
+    public IEnumerable<Card> Parse(IEnumerable<string> input)
     {
-        var cards = new Card[input.Length];
-
-        for (int i = 0; i < input.Length; i++)
+        var cards = new List<Card>();
+        foreach (var line in input)
         {
-            var raw = input[i].Split(": ")[1].Split(" | ");
+            var id = int.Parse(line.Split(": ")[0].Split("Card ")[1].Trim()) - 1;
 
-            var winning = raw[0].Trim().Replace("  ", " ").Split(' ').Select(int.Parse).ToHashSet();
+            var raw = line.Split(": ")[1].Split(" | ");
+            var winning = raw[0].Trim().Replace("  ", " ").Split(' ').Select(int.Parse);
+            var card = raw[1].Trim().Replace("  ", " ").Split(' ').Select(int.Parse);
 
-            var card = raw[1].Trim().Replace("  ", " ").Split(' ').Select(int.Parse).ToHashSet();
-
-            cards[i] = new Card(winning, card);
+            cards.Add(new Card(id, winning, card));
         }
 
         return cards;

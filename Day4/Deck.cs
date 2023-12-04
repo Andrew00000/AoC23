@@ -1,6 +1,6 @@
 ﻿internal class Deck
 {
-    public Dictionary<int, int> ExecuteCards(IEnumerable<Card> inputCards)
+    public IEnumerable<int> ExecuteCards(IEnumerable<Card> inputCards)
     {
         var cardCounts = new Dictionary<int, int>();
         foreach (var card in inputCards)
@@ -22,6 +22,6 @@
             index++;
         }
 
-        return cardCounts;
+        return cardCounts.Select(x => x.Value);
     }
 }

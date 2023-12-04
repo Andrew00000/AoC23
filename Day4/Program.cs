@@ -19,7 +19,7 @@ Console.WriteLine(problemOneResult);
 var bookie = new Deck();
 
 var cardsFinal = bookie.ExecuteCards(cards);
-var sum2 = cardsFinal.Sum(x => x.Value);
+var sum2 = cardsFinal.Sum();
 
 var problemTwoResult = solution2 == sum2 ? $"Yes the answer is {sum2}"
                                          : $"No the answer isnt {sum2}";

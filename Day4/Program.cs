@@ -16,9 +16,9 @@ Console.WriteLine(problemOneResult);
 
 //Problem Two: https://adventofcode.com/2023/day/4#part2
 
-var bookie = new Deck();
+var deck = new Deck();
 
-var cardsFinal = bookie.ExecuteCards(cards);
+var cardsFinal = deck.CountCardsAfterWinning(cards);
 var sum2 = cardsFinal.Sum();
 
 var problemTwoResult = solution2 == sum2 ? $"Yes the answer is {sum2}"

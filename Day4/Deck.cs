@@ -1,6 +1,6 @@
 ﻿internal class Deck
 {
-    public IEnumerable<int> ExecuteCards(IEnumerable<Card> inputCards)
+    public IEnumerable<int> CountCardsAfterWinning(IEnumerable<Card> inputCards)
     {
         var cardCounts = new Dictionary<int, int>();
         foreach (var card in inputCards)

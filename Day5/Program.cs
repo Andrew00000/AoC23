@@ -1,6 +1,6 @@
 ﻿var input = File.ReadAllText($@"{Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName}\in.txt")!;
 var solution1 = 379811651;
-var solution2 = 39477886;
+var solution2 = 27992443;
 
 //Problem One: https://adventofcode.com/2023/day/5
 

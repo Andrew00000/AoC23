@@ -1,6 +1,6 @@
 ﻿public class SeedRange
 {
-    public long SeedStart { get; private set; }
+    public long SeedStart { get; private  set; }
     public long Range { get; init; }
 
     public SeedRange(long seedStart, long range)
